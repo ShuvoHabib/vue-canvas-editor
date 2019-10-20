@@ -33,14 +33,14 @@
 
 
 <script>
-	import Vue from 'vue';
+	// import Vue from 'vue';
 //	import axios from 'axios';
 //	import VueAxios from 'vue-axios';
 
-    const api = 'https://picsum.photos/200/300';
-	Vue.axios.get(api).then((response) => {
-		console.log(response)
-	});
+    // const api = 'https://picsum.photos/200/300';
+	// Vue.axios.get(api).then((response) => {
+	// 	console.log(response)
+	// });
 
 	export default {
 		name: 'HelloWorld',
