@@ -1,5 +1,7 @@
 <template>
     <div>
+    {{images}}
+
     <div class="sidepane col-sm-2 col-md-2 col-lg-2">
         <div class="form">
             <h3>Form</h3>
@@ -17,8 +19,9 @@
             <div class="image">
                 <h4>Images</h4>
                 <ul class="list-unstyled">
-                    <!-- List of images here -->
-                    <!-- <li><img src="images/sample.jpeg" class="img-rounded" /></li> -->
+                    <li v-for="item in images"  v-bind:key="item">
+                        <img src={{ item.pathShort }} />
+                    </li>
                 </ul>
             </div>
         </div>
@@ -33,20 +36,26 @@
 
 
 <script>
-	// import Vue from 'vue';
-//	import axios from 'axios';
-//	import VueAxios from 'vue-axios';
-
-    // const api = 'https://picsum.photos/200/300';
-	// Vue.axios.get(api).then((response) => {
-	// 	console.log(response)
-	// });
-
 	export default {
-		name: 'HelloWorld',
+        name: 'HelloWorld',
+        data() {
+            return {
+                images: [],
+            };
+        },
 		props: {
 			msg: String
-		}
+        },
+        
+         mounted() {
+            this.importAll(require.context('../assets/', true, /\.png$/));
+        },
+
+        methods: {
+            importAll(r) {
+            r.keys().forEach(key => (this.images.push({ pathLong: r(key), pathShort: key })));
+            },
+        },
 	}
 </script>
 
